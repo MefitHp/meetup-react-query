@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Characters from './components/Characters';
+import { ReactQueryDevtools } from 'react-query-devtools'
+import Episodes from './components/Episodes';
+
 
 function App() {
+  const [section, setSection] = useState('characters');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container p-3">
+      <h1 className="title has-text-centered">React Query Small Workshop</h1>
+      <div className="is-flex pb-2" style={{ justifyContent: 'center', alignItems: 'center', gap: 20, borderBottom: '1px solid rgba(0,0,0,0.33)' }}>
+        <button className="button is-primary" onClick={() => setSection('characters')}>Characters</button>
+        <button className="button is-primary" onClick={() => setSection('episodes')}>Episodes</button>
+      </div>
+      {section === 'characters' ? <Characters /> : <Episodes />}
+      <ReactQueryDevtools initialIsOpen={false} />
     </div>
   );
 }
